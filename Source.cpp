@@ -8,10 +8,14 @@ int main() {
 
     RenderWindow window(VideoMode(1000, 1000), "CHESS 2");
     Texture chessBoard;
+    Font font;
     chessBoard.loadFromFile("board.png");
+    font.loadFromFile("OldLondon.ttf");
     Sprite boardImage;
     boardImage.setTexture(chessBoard);
     Board actualBoard;
+    Text text;
+    text.setFont(font);
 
     while (window.isOpen()) {
         Event event;
@@ -29,6 +33,12 @@ int main() {
         window.draw(boardImage);
         actualBoard.RenderBoard(window);
         window.display();
+        if (actualBoard.isGameFinished()) {
+            if (actualBoard.didWhiteWin()) text.setString("WHITE WINS");
+            else text.setString("BLACK WINS");
+            text.setCharacterSize(24);
+            window.draw(text);
+        }
     }
 
     return 0;

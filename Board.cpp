@@ -28,6 +28,7 @@ void Board::RenderBoard(RenderWindow& window) {
         highlight.setOrigin(highlight.getSize().x / 2, highlight.getSize().y / 2);
         highlight.setPosition(boardCords[move.y][move.x].x, boardCords[move.y][move.x].y);
         window.draw(highlight);
+
     }
 }
 
@@ -109,7 +110,9 @@ void Board::handleClick(int mouseX, int mouseY) {
                             else std::cout << "Black Turn";
                             bool isCheck = check(turn);
                             if (isCheck) std::cout << "CHECK";
-                            if (mate(turn)) std::cout << "MAATE";
+                            if (mate(turn)) {
+                                isGameDone = true;
+                            }
                             break;
                         }
                     }

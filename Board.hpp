@@ -22,6 +22,10 @@ public:
     bool isSquareAttacked(int x, int y, int s);
     bool check(int s);
     bool mate(int s);
+    bool isGameFinished() { return isGameDone; };
+    bool didWhiteWin() {
+        return turn == -1 ? true : false;
+    }
 
 private:
     /*
@@ -62,4 +66,5 @@ private:
     bool pieceSelected = false;
     std::vector<Pair> possibleMoves;
     int turn = 1; // white = 1, black = -1
+    bool isGameDone = false;
 };
